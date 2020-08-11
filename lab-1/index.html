@@ -5,18 +5,27 @@
 	<link rel=stylesheet href="../src/reset.css">
 	<link rel=stylesheet href="lab.css">
 	<link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
-
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body class="paper">
-	<div id="app"><center>
+	<center>
+	<div id="app">
+
 		<h1>มาท่องสูตรคูณกันเถอะ </h1>
-		<input type="number" v-model="n">
-		<div class="space"></div>
-		<h2>สูตรคูณแม่ {{n}}</h2>
-		<h3 v-for="i in 12">
-			{{n}} x {{i}} = {{x(i)}}
+		<h3 id="text1">
+			ตัวคูณ
+			<input type="number" v-model="n">
+			&emsp;
+			จำนวนแถว
+			<input type="number" v-model="row">
 		</h3>
+		<div class="space"></div>
+		<h2 id="text2">สูตรคูณแม่ {{n}}</h2>
+
+		<h3
+		class="row1" v-for="i in r">
+		{{n}} x {{i}} = {{x(i)}}</h3>
+
 		<!-- <h4>{{n}} x 1 = {{n}}</h4>
 		<h4>{{n}} x 2 = {{x2}}</h4>
 		<h4>{{n}} x 3 = {{x3}}</h4>
@@ -28,21 +37,35 @@
 		<h4>{{n}} x 9 = {{x9}}</h4>
 		<h4>{{n}} x 10 = {{x10}}</h4>
 		<h4>{{n}} x 11 = {{x11}}</h4>
-		<h4>{{n}} x 12 = {{x12}}</h4> --></center>
-	</div>
+		<h4>{{n}} x 12 = {{x12}}</h4> -->
+		<br><h3 id="text2">แม่ก่อนหน้าคือ แม่ {{before_n}}</h3>
+		<h3>SUM = {{s(row)}}</h3>
+	</div></center>
 
 	<script>
 		let app = new Vue({
 			el:'#app',
 			data:{
-				n: 2
+				n: 2,
+				before_n: 1,
+				row: 12
 			},
 			methods:{
 				x: function(row){
 					return this.n*row
+				},
+				s: function(row){
+					sum = 0
+					for (var i = 1; i <= row; i++) {
+                        sum += (this.n * i)
+                    }
+					return sum
 				}
 			},
 			computed:{
+				r: function(){
+					return parseInt(this.row)
+				},
 				x2: function(){
 					return this.n*2
 				},
@@ -76,7 +99,11 @@
 				x12: function(){
 					return this.n*12
 				}
-
+			},
+			watch: {
+				n: function(a,b){
+					this.before_n = b
+				}
 			}
 		})
 	</script>
