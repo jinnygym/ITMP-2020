@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lab - Multimedia Programming 2563 ITKMITL</title>
+	<title>Lab 1 61070230 - Multimedia Programming 2563 ITKMITL</title>
 	<link rel=stylesheet href="../src/reset.css">
 	<link rel=stylesheet href="lab.css">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -10,6 +10,7 @@
 	<div id="app">
 		<input type="number">
 		<div class="space"></div>
+		<h3>สูตรคูณแม่ {{number}}</h3>
 		<h4>{{number}} x 1 = x</h4>
 		<h4>{{number}} x 2 = x</h4>
 		<h4>{{number}} x 3 = x</h4>
@@ -26,8 +27,8 @@
 
 	<script>
 		let app = new Vue({
-			el: '#app',
-			data: {
+			el:'#app',
+			data:{
 				number: 2
 			}
 		})
