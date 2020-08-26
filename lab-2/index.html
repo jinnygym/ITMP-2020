@@ -8,7 +8,12 @@
 </head>
 <body>
 	<div id="app">
-		<h1>Statistics</h1>
+		<h1>Rate Statistics basketball player</h1>
+
+		<h3>Name : {{person.name}}</h3>
+		<h3>Team abbreviation : {{person.team_acronym}}</h3>
+		<h3>Team Name : {{person.team_name}}</h3>
+		<h3>The number of times played : {{person.games_played}}</h3>
 		<h2 v-for="u in users">{{u.name}}</h2>
 	</div>
 
@@ -24,8 +29,8 @@
 		let app = new Vue({
 			el: '#app',
 			data: {
-				users : [
-				{
+				person : {
+					"id": 1,
 					"name": "Aaron Brooks",
 					"team_acronym": "min",
 					"team_name": "Minnesota Timberwolves",
@@ -35,6 +40,30 @@
 					"field_goals_made_per_game": "1.0",
 					"field_goal_percentage": "43.1",
 					"free_throw_percentage": "75.0",
+					"three_point_attempted_per_game": "0.9",
+					"three_point_made_per_game": "0.3",
+					"three_point_percentage": "33.3",
+					"points_per_game": "2.3",
+					"offensive_rebounds_per_game": "0.2",
+					"defensive_rebounds_per_game": "0.3",
+					"rebounds_per_game": "0.6",
+					"assists_per_game": "0.7",
+					"steals_per_game": "0.2",
+					"blocks_per_game": "0.0",
+					"turnovers_per_game": "0.3",
+					"player_efficiency_rating": "0.8"
+				},
+				users : [
+				{
+					"name": "Aaron Brooks",
+					"team_acronym": "________",
+					"team_name": "________",
+					"games_played": "________",
+					"minutes_per_game": "________",
+					"field_goals_attempted_per_game": "________",
+					"field_goals_made_per_game": "________",
+					"field_goal_percentage": "________",
+					"free_throw_percentage": "________",
 					"three_point_attempted_per_game": "0.9",
 					"three_point_made_per_game": "0.3",
 					"three_point_percentage": "33.3",
