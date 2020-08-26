@@ -8,28 +8,76 @@
 </head>
 <body>
 	<div id="app">
-		
+		<h1>Statistics</h1>
 	</div>
-	
+
 
 	<script>
-		fetch('https://jsonplaceholder.typicode.com/users')
+		fetch('https://nba-players.herokuapp.com/players-stats?fbclid=IwAR0CMnQRxOm7NDtIHJr3sByxNVaHS72DcGsoh8SPoj34OmdqNR5cxbozBbA')
 		.then(response => response.json())
 		.then(json => {console.log(json)})
+
 		let app = new Vue({
 			el: '#app',
 			data: {
-				users :[],
-				person:{
-					id:0,
-					name:'..loading',
-					username:'..loading',
-					email:'..loading',
-					website:'..loading',
-					company:{
-						name : '..loading',
-					}
-				}	
+				users : [
+				{
+					"name": "Aaron Brooks",
+					"team_acronym": "min",
+					"team_name": "Minnesota Timberwolves",
+					"games_played": "23",
+					"minutes_per_game": "6:38",
+					"field_goals_attempted_per_game": "2.2",
+					"field_goals_made_per_game": "1.0",
+					"field_goal_percentage": "43.1",
+					"free_throw_percentage": "75.0",
+					"three_point_attempted_per_game": "0.9",
+					"three_point_made_per_game": "0.3",
+					"three_point_percentage": "33.3",
+					"points_per_game": "2.3",
+					"offensive_rebounds_per_game": "0.2",
+					"defensive_rebounds_per_game": "0.3",
+					"rebounds_per_game": "0.6",
+					"assists_per_game": "0.7",
+					"steals_per_game": "0.2",
+					"blocks_per_game": "0.0",
+					"turnovers_per_game": "0.3",
+					"player_efficiency_rating": "0.8"
+				},
+				{
+					"name": "Aaron Gordon",
+					"team_acronym": "orl",
+					"team_name": "Orlando Magic",
+					"games_played": "38",
+					"minutes_per_game": "33:49",
+					"field_goals_attempted_per_game": "14.8",
+					"field_goals_made_per_game": "6.6",
+					"field_goal_percentage": "44.7",
+					"free_throw_percentage": "73.5",
+					"three_point_attempted_per_game": "5.8",
+					"three_point_made_per_game": "2.1",
+					"three_point_percentage": "35.1",
+					"points_per_game": "18.3",
+					"offensive_rebounds_per_game": "1.6",
+					"defensive_rebounds_per_game": "6.6",
+					"rebounds_per_game": "8.3",
+					"assists_per_game": "2.1",
+					"steals_per_game": "0.9",
+					"blocks_per_game": "0.7",
+					"turnovers_per_game": "1.9",
+					"player_efficiency_rating": "2.0"
+				},
+				]
+				// person:{
+				// 	id:0,
+				// 	name:'..loading',
+				// 	username:'..loading',
+				// 	email:'..loading',
+				// 	website:'..loading',
+				// 	company:{
+				// 		name : '..loading',
+				// 	}
+				// }
 			}
 		})
 
