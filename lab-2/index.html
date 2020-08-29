@@ -24,6 +24,8 @@
 		<div class="row align-self-center">
 			<div id="app" class="col-md sell">
 				<h1>Rate Statistics basketball player</h1>
+				<img src="https://nba-players.herokuapp.com/players/Brooks/aaron" alt="">
+				<!-- Aaron Brooks -->
 				<h3>Name : {{person.name}}</h3>
 				<h3>Team abbreviation : {{person.team_acronym}}</h3>
 				<h3>Team Name : {{person.team_name}}</h3>
@@ -31,8 +33,11 @@
 				<h3>minutes per game : {{person.minutes_per_game}}</h3>
 				<h3>field goals attempted per game : {{person.field_goals_attempted_per_game}}</h3>
 
-				<h2 v-for="u in users" :data-id="u.id" onclick="viewBio(this)">{{u.name}}</h2>
+				<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)">{{u.name}}</h2>
+				<button>next</button>
 			</div>
+
+
 		</div>
 	</div>
 	<script>
@@ -46,6 +51,11 @@
 
 		let app = new Vue({
 			el: '#app',
+			methods : {
+				viewBio: function(user){
+					this.person = user
+				}
+			},
 			data: {
 				person : {
 					"id": 1,
@@ -98,11 +108,11 @@
 			}
 		})
 
-		function viewBio(h2){
-			let id = h2.dataset.id;
-			app.person = app.users[id-1]
-			console.log(h2)
-		}
+		// function viewBio(h2){
+		// 	let id = h2.dataset.id;
+		// 	app.person = app.users[id-1]
+		// 	console.log(h2)
+		// }
 	</script>
 </body>
 </html>
