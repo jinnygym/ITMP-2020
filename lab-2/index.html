@@ -22,21 +22,26 @@
 <body>
 	<div class="content text-center">
 		<div class="row align-self-center">
-			<div id="app" class="col-md sell">
-				<h1>Rate Statistics basketball player</h1>
-				<img src="https://nba-players.herokuapp.com/players/Brooks/aaron" alt="">
-				<!-- Aaron Brooks -->
-				<h3>Name : {{person.name}}</h3>
-				<h3>Team abbreviation : {{person.team_acronym}}</h3>
-				<h3>Team Name : {{person.team_name}}</h3>
-				<h3>The number of times played : {{person.games_played}}</h3>
-				<h3>minutes per game : {{person.minutes_per_game}}</h3>
-				<h3>field goals attempted per game : {{person.field_goals_attempted_per_game}}</h3>
-
-				<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)">{{u.name}}</h2>
-				<button>next</button>
+			<div class="col-md sell">
+				<h1>Rate Statistics basketball player</h1><br>
+				<div id="app" class="col-8">
+					<h3>Name : {{person.name}}</h3>
+					<h3>Team abbreviation : {{person.team_acronym}}</h3>
+					<h3>Team Name : {{person.team_name}}</h3>
+					<h3>The number of times played : {{person.games_played}}</h3>
+					<h3>minutes per game : {{person.minutes_per_game}}</h3>
+					<h3>field goals attempted per game : {{person.field_goals_attempted_per_game}}</h3>
+					<h3>player efficiency rating : {{person.player_efficiency_rating}}</h3>
+					<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)">{{u.name}}</h2>
+					<button>next</button>
+				</div>
+				<div id="app" class="col-4">
+					<!-- Loop pic -->
+					<img src="https://nba-players.herokuapp.com/players/Brooks/aaron" alt="">
+					<!-- <img :src="https://nba-players.herokuapp.com/players/Brooks/aaron" alt=""> -->
+					<!-- Aaron Brooks -->
+				</div>
 			</div>
-
 
 		</div>
 	</div>
@@ -60,50 +65,23 @@
 				person : {
 					"id": 1,
 					"name": "Aaron Brooks",
-					"team_acronym": "________",
-					"team_name": "________",
-					"games_played": "________",
-					"minutes_per_game": "________",
-					"field_goals_attempted_per_game": "________",
-					"field_goals_made_per_game": "________",
-					"field_goal_percentage": "________",
-					"free_throw_percentage": "________",
-					"three_point_attempted_per_game": "________",
-					"three_point_made_per_game": "________",
-					"three_point_percentage": "________",
-					"points_per_game": "________",
-					"offensive_rebounds_per_game": "________",
-					"defensive_rebounds_per_game": "________",
-					"rebounds_per_game": "________",
-					"assists_per_game": "________",
-					"steals_per_game": "________",
-					"blocks_per_game": "________",
-					"turnovers_per_game": "________",
-					"player_efficiency_rating": "________"
+					"team_acronym": "..loading",
+					"team_name": "..loading",
+					"games_played": "..loading",
+					"minutes_per_game": "..loading",
+					"field_goals_attempted_per_game": "..loading",
+					"player_efficiency_rating": "..loading"
 				},
 				users : [{
 					"id": 1,
-					"name": "________",
-					"team_acronym": "________",
-					"team_name": "________",
-					"games_played": "________",
-					"minutes_per_game": "________",
-					"field_goals_attempted_per_game": "________",
-					"field_goals_made_per_game": "________",
-					"field_goal_percentage": "________",
-					"free_throw_percentage": "________",
-					"three_point_attempted_per_game": "________",
-					"three_point_made_per_game": "________",
-					"three_point_percentage": "________",
-					"points_per_game": "________",
-					"offensive_rebounds_per_game": "________",
-					"defensive_rebounds_per_game": "________",
-					"rebounds_per_game": "________",
-					"assists_per_game": "________",
-					"steals_per_game": "________",
-					"blocks_per_game": "________",
-					"turnovers_per_game": "________",
-					"player_efficiency_rating": "________"
+					"name": "Aaron Brooks",
+					"team_acronym": "..loading",
+					"team_name": "..loading",
+					"games_played": "..loading",
+					"minutes_per_game": "..loading",
+					"field_goals_attempted_per_game": "..loading",
+					"player_efficiency_rating": "..loading",
+
 				}]
 			}
 		})
