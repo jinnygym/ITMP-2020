@@ -1,0 +1,30 @@
+* {
+    font-family: 'Alata', sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+body{
+    padding: 0px;
+    margin: 0px;
+    /* background: url('bg.jpg') no-repeat center center fixed; */
+    background-size: cover;
+    overflow-x: auto;
+    height: 100%;
+
+}
+
+.content{
+    margin: 6vh 10vw;
+    height: 85vh;
+}
+
+.sell{
+    width: 30vw;
+    height: 83vh;
+    background-color: rgba(226, 215, 154, 0.726);
+    display: inline-block;
+    margin: 20px;
+    padding: 4vh;
+    border-radius: 30px;
+    overflow: auto;
+}

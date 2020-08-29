@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The Members - ITKMITL Multimedia Programming 2563</title>
 
+	<title>The Members - ITKMITL Multimedia Programming 2563</title>
+	<!-- Latest compiled and minified CSS -->
+    <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="lab.css">
 </head>
 <body>
-	<div id="app">
-		<h1>Rate Statistics basketball player</h1>
+	<div class="content text-center">
+		<div class="row align-self-center">
+			<div id="app" class="col-md sell">
+				<h1>Rate Statistics basketball player</h1>
+				<h3>Name : {{person.name}}</h3>
+				<h3>Team abbreviation : {{person.team_acronym}}</h3>
+				<h3>Team Name : {{person.team_name}}</h3>
+				<h3>The number of times played : {{person.games_played}}</h3>
+				<h3>minutes per game : {{person.minutes_per_game}}</h3>
+				<h3>field goals attempted per game : {{person.field_goals_attempted_per_game}}</h3>
 
-		<h3>Name : {{person.name}}</h3>
-		<h3>Team abbreviation : {{person.team_acronym}}</h3>
-		<h3>Team Name : {{person.team_name}}</h3>
-		<h3>The number of times played : {{person.games_played}}</h3>
-		<h2 v-for="u in users">{{u.name}}</h2>
+				<h2 v-for="u in users" :data-id="u.id" onclick="viewBio(this)">{{u.name}}</h2>
+			</div>
+		</div>
 	</div>
-
-
 	<script>
 		fetch('https://nba-players.herokuapp.com/players-stats?fbclid=IwAR0CMnQRxOm7NDtIHJr3sByxNVaHS72DcGsoh8SPoj34OmdqNR5cxbozBbA')
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
 			app.users = json
+			app.person = json[0]
 		})
 
 		let app = new Vue({
@@ -31,30 +49,6 @@
 			data: {
 				person : {
 					"id": 1,
-					"name": "Aaron Brooks",
-					"team_acronym": "min",
-					"team_name": "Minnesota Timberwolves",
-					"games_played": "23",
-					"minutes_per_game": "6:38",
-					"field_goals_attempted_per_game": "2.2",
-					"field_goals_made_per_game": "1.0",
-					"field_goal_percentage": "43.1",
-					"free_throw_percentage": "75.0",
-					"three_point_attempted_per_game": "0.9",
-					"three_point_made_per_game": "0.3",
-					"three_point_percentage": "33.3",
-					"points_per_game": "2.3",
-					"offensive_rebounds_per_game": "0.2",
-					"defensive_rebounds_per_game": "0.3",
-					"rebounds_per_game": "0.6",
-					"assists_per_game": "0.7",
-					"steals_per_game": "0.2",
-					"blocks_per_game": "0.0",
-					"turnovers_per_game": "0.3",
-					"player_efficiency_rating": "0.8"
-				},
-				users : [
-				{
 					"name": "Aaron Brooks",
 					"team_acronym": "________",
 					"team_name": "________",
@@ -64,33 +58,51 @@
 					"field_goals_made_per_game": "________",
 					"field_goal_percentage": "________",
 					"free_throw_percentage": "________",
-					"three_point_attempted_per_game": "0.9",
-					"three_point_made_per_game": "0.3",
-					"three_point_percentage": "33.3",
-					"points_per_game": "2.3",
-					"offensive_rebounds_per_game": "0.2",
-					"defensive_rebounds_per_game": "0.3",
-					"rebounds_per_game": "0.6",
-					"assists_per_game": "0.7",
-					"steals_per_game": "0.2",
-					"blocks_per_game": "0.0",
-					"turnovers_per_game": "0.3",
-					"player_efficiency_rating": "0.8"
+					"three_point_attempted_per_game": "________",
+					"three_point_made_per_game": "________",
+					"three_point_percentage": "________",
+					"points_per_game": "________",
+					"offensive_rebounds_per_game": "________",
+					"defensive_rebounds_per_game": "________",
+					"rebounds_per_game": "________",
+					"assists_per_game": "________",
+					"steals_per_game": "________",
+					"blocks_per_game": "________",
+					"turnovers_per_game": "________",
+					"player_efficiency_rating": "________"
 				},
-				]
-				// person:{
-				// 	id:0,
-				// 	name:'..loading',
-				// 	username:'..loading',
-				// 	email:'..loading',
-				// 	website:'..loading',
-				// 	company:{
-				// 		name : '..loading',
-				// 	}
-				// }
+				users : [{
+					"id": 1,
+					"name": "________",
+					"team_acronym": "________",
+					"team_name": "________",
+					"games_played": "________",
+					"minutes_per_game": "________",
+					"field_goals_attempted_per_game": "________",
+					"field_goals_made_per_game": "________",
+					"field_goal_percentage": "________",
+					"free_throw_percentage": "________",
+					"three_point_attempted_per_game": "________",
+					"three_point_made_per_game": "________",
+					"three_point_percentage": "________",
+					"points_per_game": "________",
+					"offensive_rebounds_per_game": "________",
+					"defensive_rebounds_per_game": "________",
+					"rebounds_per_game": "________",
+					"assists_per_game": "________",
+					"steals_per_game": "________",
+					"blocks_per_game": "________",
+					"turnovers_per_game": "________",
+					"player_efficiency_rating": "________"
+				}]
 			}
 		})
 
+		function viewBio(h2){
+			let id = h2.dataset.id;
+			app.person = app.users[id-1]
+			console.log(h2)
+		}
 	</script>
 </body>
 </html>
