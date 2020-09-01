@@ -44,7 +44,7 @@
 	</div>
 
 	<script>
-		let picklight = "80%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 80%
+		let picklight = "70%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 70%
 		document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
@@ -65,17 +65,9 @@
 			methods: {
 				check: function(e){
 					console.log(e)
-					// console.log(e.target)
-					// console.log(e.target.dataset.pick)
-					if(this.time > 0 && this.isPlayed){
-						if(e.target.dataset.pick){
-							this.score++;
-							this.correct();
-						}else{
-							if(this.score > 0){
-								this.score--;
-							}
-						}
+					if (e == true) {
+						this.score += 1
+                        this.correct()
 					}
 					//ทำให้เช็คก่อนว่าถูกมั้ย
 				},
