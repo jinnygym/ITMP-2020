@@ -44,7 +44,7 @@
 	</div>
 
 	<script>
-		let picklight = "20%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%
+		let picklight = "80%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 80%
 		document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
@@ -65,8 +65,47 @@
 			methods: {
 				check: function(e){
 					console.log(e)
-					console.log(e.target)
+					// console.log(e.target)
+					// console.log(e.target.dataset.pick)
+					if(this.time > 0 && this.isPlayed){
+						if(e.target.dataset.pick){
+							this.score++;
+							this.correct();
+						}else{
+							if(this.score > 0){
+								this.score--;
+							}
+						}
+					}
+					//ทำให้เช็คก่อนว่าถูกมั้ย
+				},
+				correct: function(){
+					//เข้าด่านต่อไป
+					this.row = rand(2,6)
+					this.pick = rand(1,this.row*this.row)
+					this.h = rand(0,360)
+					this.l = rand(20,50)
+					console.log('Correct!')
 				}
+				// again: function(){
+				// 	document.querySelector('#canvas_footer3').style.display = "none";
+				// 	this.isPlayed = true;
+				// 	this.row = 2;
+				// 	this.pick = rand(1,this.row*this.row)
+				// 	this.h = rand(0,360)
+				// 	this.l = rand(20,50)
+				// 	this.time = 20;
+				// 	this.score = 0;
+				// 	let counter = setInterval(()=>{
+				// 		if (this.time>0 && this.isPlayed) {
+				// 			this.time--
+				// 		}else{
+				// 			this.isPlayed = false;
+				// 			document.querySelector('#canvas_footer3').style.display = "flex";
+				// 			clearInterval(counter)
+				// 		}
+				// 	},1000);
+				// }
 			}
 		})
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
