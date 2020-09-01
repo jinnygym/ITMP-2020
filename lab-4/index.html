@@ -10,8 +10,11 @@
 	<div id="canvas">
 		<section id="canvas_header">
 			<div>
+				<p>
 				เหลือเวลา {{time}} วินาที
+				</p>
 			</div>
+			<h1 id="scoretime"></h1>
 		</section>
 		<section id="canvas_main">
 			<main>
@@ -45,7 +48,6 @@
 
 	<script>
 		let picklight = "70%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 70%
-		document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
 			let shift = (stop-start)+1
@@ -65,9 +67,16 @@
 			methods: {
 				check: function(e){
 					console.log(e)
-					if (e == true) {
+					if (e == true && app.time > 0) {
 						this.score += 1
-                        this.correct()
+						this.time += 1
+						this.correct()
+					}
+					else if (e == false && app.time > 0){
+						this.time -= 2
+						if (this.time <= 0){
+							this.time = 0
+						}
 					}
 					//ทำให้เช็คก่อนว่าถูกมั้ย
 				},
@@ -79,35 +88,18 @@
 					this.l = rand(10,50)
 					console.log('Correct!')
 				},
-				// again: function(){
-				// 	document.querySelector('#canvas_footer3').style.display = "none";
-				// 	this.isPlayed = true;
-				// 	this.row = 2;
-				// 	this.pick = rand(1,this.row*this.row)
-				// 	this.h = rand(0,360)
-				// 	this.l = rand(20,50)
-				// 	this.time = 20;
-				// 	this.score = 0;
-				// 	let counter = setInterval(()=>{
-				// 		if (this.time>0 && this.isPlayed) {
-				// 			this.time--
-				// 		}else{
-				// 			this.isPlayed = false;
-				// 			document.querySelector('#canvas_footer3').style.display = "flex";
-				// 			clearInterval(counter)
-				// 		}
-				// 	},1000);
-				// }
 			}
 		})
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบนนี้
 		document.querySelector('#canvas').style.setProperty('--picklight',picklight);
 
 		let counter = setInterval(()=>{
-			if (app.time>0) {
+			document.getElementById("scoretime").innerHTML = ""
+			if (app.time > 0) {
 				app.time--
 			}else{
 				clearInterval(counter)
+				document.getElementById("scoretime").innerHTML = "&emsp; หมดเวลา!!!"
 			}
 		},1000);
 	</script>
