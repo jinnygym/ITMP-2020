@@ -48,6 +48,7 @@
 		// let fruitCount = 5
 		let isRightArrow = 1
 		let speed = 1000
+		let check = 0
 		let app = new Vue({
 			el:'#canvas',
 			data:{
@@ -57,8 +58,8 @@
 				turn:0,
 				score:0,
 				fruits:[
-					{id:1,type:'red',pst:5,run:true,step:1}, //13-16 banana
-					{id:2,type:'yellow',pst:2,run:true,step:1}, //11-12 apple
+					{id:1,type:13,pst:5,run:true,step:1}, //13-16 banana
+					{id:2,type:11,pst:2,run:true,step:1}, //11-12 apple
 					//{id:3,type:'yellow',pst:2,run:true,step:1},
 					//{id:4,type:'reds',pst:1,run:true,step:1},
 				]
@@ -70,7 +71,6 @@
 					}else{
 						this.isRightArrow = 1
 					}
-					console.log(this.isRightArrow)
 				},
 			},
 			computed:{},
@@ -90,6 +90,10 @@
 
 							if (this.fruits[f].pst == this.fruits[f].type && this.fruits[f].run) {
 								this.score ++
+								if (this.score % 3 == 0 && this.speed != 200){
+									this.speed -= 50
+									console.log(this.speed)
+								}
 							}
 
 							else if (this.fruits[f].pst != this.fruits[f].type && this.fruits[f].run) {
@@ -101,9 +105,20 @@
 						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16) {
 							this.fruits[f].run = false
 						}
+
+						let run = this.fruits[f].run
+						if (run) {
+							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
+						}
 					}
 
-					let spawn = rand(0,1)
+					let spawn = 0
+					if (this.score >= 10){
+						spawn = 1
+					}
+					else{
+						spawn = rand(0,1)
+					}
 					if(spawn == 1){
 						newfruit = rand(0,1)
 						newfruitId = 3
@@ -114,6 +129,7 @@
 						}
 						newfruitId++;
 					}
+
 				}
 			}
 		})
