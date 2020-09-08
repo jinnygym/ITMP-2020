@@ -90,6 +90,7 @@
 
 							if (this.fruits[f].pst == this.fruits[f].type && this.fruits[f].run) {
 								this.score ++
+								//ถ้าคะแนนเพิ่มขึ้น 3 ความเร็วจะเร็วขึ้น 50 หน่วย
 								if (this.score % 3 == 0 && this.speed != 200){
 									this.speed -= 50
 									console.log(this.speed)
@@ -111,7 +112,7 @@
 							this.fruits[f].pst = this.fruits[f].pst + this.fruits[f].step
 						}
 					}
-
+					//การเกิดใหม่
 					let spawn = 0
 					if (this.score >= 10){
 						spawn = 1
