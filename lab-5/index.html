@@ -21,7 +21,7 @@
 				:data-pst="i"></div>
 				<div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
 
-				<div class="box _fruit"></div>
+				<div class="box _fruit"  v-for="f in fruits" :data-pst="f.pst"></div>
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
@@ -34,7 +34,7 @@
 				Toggle
 			</div>
 			<div v-if="!play" class="btn" id="endgame">
-				Ene Game
+				End Game
 			</div>
 		</section>
 	</div>
@@ -55,16 +55,67 @@
 				isRightArrow: isRightArrow,
 				speed: speed,
 				play:true,
-				time:0,
+				turn:0,
 				score:0,
 				fruits:[
-					{id:1,type:'red',pst:5,run:true,step:1},
-					{id:2,type:'yellow',pst:2,run:true,step:1},
+					{id:1,type:'red',pst:5,run:true,step:1}, //13-16 banana
+					{id:2,type:'yellow',pst:2,run:true,step:1}, //11-12 apple
 					//{id:3,type:'yellow',pst:2,run:true,step:1},
 					//{id:4,type:'reds',pst:1,run:true,step:1},
 				]
+			},
+			methods:{
+				swap: function(){
+					if (this.isRightArrow == 1) {
+						this.isRightArrow = 0
+					}else{
+						this.isRightArrow = 1
+					}
+					console.log(this.isRightArrow)
+				},
+			},
+			computed:{},
+			watch:{
+				turn: function(){
+					for(let f in this.fruits){
+
+						if (this.fruits[f].pst == 10){
+							if(this.isRightArrow == 1){
+								this.fruits[f].step = 3
+							}else{
+								this.fruits[f].step = 1
+							}
+						}
+						//check
+						if (this.fruits[f].pst == 11 || this.fruits[f].pst == 13) {
+
+							if (this.fruits[f].pst == this.fruits[f].type && this.fruits[f].run) {
+								this.score ++
+							}
+
+							else if (this.fruits[f].pst != this.fruits[f].type && this.fruits[f].run) {
+								this.play = false
+							}
+						}
+
+
+						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16) {
+							this.fruits[f].run = false
+						}
+
+
+					}
+				}
 			}
 		})
+		//timespeed
+		setTimeout(function timespeed(){
+			if (app.play) {
+				app.turn++
+				setTimeout(timespeed, app.speed)
+			}
+		},app.speed)
+
 	</script>
 </body>
 </html>
