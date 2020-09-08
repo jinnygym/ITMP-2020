@@ -19,18 +19,17 @@
 				<div class="box _path"
 				v-for="i in 14"
 				:data-pst="i"></div>
-				<div class="box _toggle" data-pst="10" data-isrightarrow="1"></div>
+				<div class="box _toggle" data-pst="10" :data-isrightarrow="isRightArrow"></div>
 
-				<div class="box _fruit"  v-for="f in fruits" :data-pst="f.pst"></div>
+				<div class="box _fruit" v-for="f in fruits" :data-pst="f.pst" :data-type="f.type"></div>
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
 				<div class="box _16" data-pst="16"></div>
-
 			</main>
 		</section>
 		<section id="canvas_footer">
-			<div v-if="play" class="btn" id="toggle">
+			<div v-if="play" class="btn" id="toggle" @click="swap">
 				Toggle
 			</div>
 			<div v-if="!play" class="btn" id="endgame">
@@ -102,8 +101,18 @@
 						if (this.fruits[f].pst == 12 || this.fruits[f].pst == 16) {
 							this.fruits[f].run = false
 						}
+					}
 
-
+					let spawn = rand(0,1)
+					if(spawn == 1){
+						newfruit = rand(0,1)
+						newfruitId = 3
+						if(newfruit == 1){
+							this.fruits.push({id:newfruitId,type:11,pst:1,run:true,step:1})
+						}else{
+							this.fruits.push({id:newfruitId,type:13,pst:1,run:true,step:1})
+						}
+						newfruitId++;
 					}
 				}
 			}
