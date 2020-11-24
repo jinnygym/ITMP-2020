@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 	<title>The Members - ITKMITL Multimedia Programming 2563</title>
 	<!-- Latest compiled and minified CSS -->
-    <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="lab.css">
 </head>
+
 <body>
 	<div class="content text-center">
 		<h1>Rate Statistics basketball player</h1><br>
-		<div class="row sell">
-				<div id="app" class="col-md">
-					<img src="https://nba-players.herokuapp.com/players/Brooks/aaron" alt="" width="40%">
+		<div class="sell">
+			<div id="app" class="row" style="width: 100%;">
+				<div class="col-6">
+					<img :src="url" alt="" width="40%"><br><br>
+					<!-- var res = str.split(); -->
 					<h4>Name : {{person.name}}</h4>
 					<h4>Team abbreviation : {{person.team_acronym}}</h4>
 					<h4>Team Name : {{person.team_name}}</h4>
@@ -32,29 +34,33 @@
 					<h4>minutes per game : {{person.minutes_per_game}}</h4>
 					<h4>field goals attempted per game : {{person.field_goals_attempted_per_game}}</h4>
 					<h4>player efficiency rating : {{person.player_efficiency_rating}}</h4>
-					<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)">{{u.name}}</h2>
 				</div>
-
+				<div class="col-6" style="overflow: scroll; height: 100%; overflow-x: hidden;">
+					<h1>Name List</h1>
+					<h2 v-for="u in users" :data-id="u.id" @click="viewBio(u)" style="cursor: pointer;">{{u.name}}</h2>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script>
 		fetch('https://nba-players.herokuapp.com/players-stats?fbclid=IwAR0CMnQRxOm7NDtIHJr3sByxNVaHS72DcGsoh8SPoj34OmdqNR5cxbozBbA')
-		.then(response => response.json())
-		.then(json => {
-			console.log(json)
-			app.users = json
-			app.person = json[0]
-		})
+			.then(response => response.json())
+			.then(json => {
+				console.log(json)
+				app.users = json
+				app.person = json[0]
+			})
 
 		let app = new Vue({
 			el: '#app',
-			methods : {
-				viewBio: function(user){
+			methods: {
+				viewBio: function (user) {
 					this.person = user
+					this.url = "https://nba-players.herokuapp.com/players/" + this.person.name.split(" ")[1] + "/" + this.person.name.split(" ")[0]
 				}
 			},
 			data: {
-				person : {
+				person: {
 					"id": 1,
 					"name": "..loading",
 					"team_acronym": "..loading",
@@ -64,17 +70,17 @@
 					"field_goals_attempted_per_game": "..loading",
 					"player_efficiency_rating": "..loading"
 				},
-				users : [{
+				users: [{ //รวมทุกคน
 					"id": 1,
-					"name": "Aaron Brooks",
+					"name": "Aaron Brooks", //name[0], name[1]      var res = str.split();
 					"team_acronym": "..loading",
 					"team_name": "..loading",
 					"games_played": "..loading",
 					"minutes_per_game": "..loading",
 					"field_goals_attempted_per_game": "..loading",
 					"player_efficiency_rating": "..loading",
-
-				}]
+				}],
+				url: "https://nba-players.herokuapp.com/players/Brooks/aaron"
 			}
 		})
 
@@ -85,4 +91,5 @@
 		// }
 	</script>
 </body>
+
 </html>
